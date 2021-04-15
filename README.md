@@ -1,24 +1,89 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**【アプリケーション名】**
+Dear Femi
 
-Things you may want to cover:
+**【アプリケーション概要】**
+日常で感じた違和感やもやもやをフェミニズム、ジェンダーを通して、どうしたら良くなるかを話し合い、学び、助け合って、個人のより良い人生を目指すためのコミュニケーションWEBサービスです。
 
-* Ruby version
+**【URL】**
 
-* System dependencies
+**【テスト用アカウント】**
 
-* Configuration
+**【利用方法】**
+ユーザー登録は招待制
+登録・ログイン後、投稿ができる
 
-* Database creation
+**【目指した課題解決】**
+フェミニスト、フェミニズムやジェンダーに関心がある人同士が、安心してコミュニケーションをとれる場所が欲しい。
 
-* Database initialization
+**【洗い出した要件】**
+ユーザー管理機能
+- ユーザーは招待制で新しく登録できる
+- ユーザー登録が完了している場合、ログインすることができる
+- ユーザー登録後にユーザー情報を編集することができる
+- ログアウトできる
 
-* How to run the test suite
+トピック作成機能
+- 話したいトピックを作成できる
+- ユーザーがタイトル名を決定できる
 
-* Services (job queues, cache servers, search engines, etc.)
+写真付き投稿機能
+- テキストと画像が投稿できる
+- 投稿した画像とテキストは投稿したトピックにのみ表示できる
 
-* Deployment instructions
+**【実装した機能についての画像やGIF及びその説明】**
 
-* ...
+**【実装予定の機能】**
+
+**【データベース設計】**
+ER図に記載
+
+**【ローカルでの動作方法】**
+rails _6.0.0_
+
+
+
+# テーブル設計
+
+## users テーブル
+| Column             | Type   | Options                   |
+|:------------------:|:------:|:-------------------------:|
+| name               | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| phone_number       | string | null: false, unique: true |
+| birthday           | date   | null: false               |
+
+### Association
+
+- has_many  :topics
+- has_many  :posts
+
+
+## topics テーブル
+| Column | Type       | Options            |
+|:------:|:----------:|:------------------:|
+| image  | string     | ActiveStorageで実装 |
+| user   | references | null: false        |
+| title  | string     | null: false        |
+| text   | text       | null: false        |
+
+### Association
+
+- belongs_to :user
+- has_many   :posts
+
+
+## posts テーブル
+| Column | Type       | Options            |
+|:------:|:----------:|:------------------:|
+| image  | string     | ActiveStorageで実装 |
+| user   | references | null: false        |
+| topic  | references | null: false        |
+| text   | text       | null: false        |
+
+### Association
+
+- belongs_to :user
+- belongs_to :topic
