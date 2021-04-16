@@ -1,0 +1,24 @@
+<div class="card border-secondary mb-3" style="max-width: 30rem; margin: 0 auto 0;">
+  <div class="card-header">
+    <h1>Log in</h1>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Log in" %>
+        </div>
+      <% end %>
+      <br>
+      <%= render "devise/shared/links" %>
+    </p>
+  </div>
+</div>
