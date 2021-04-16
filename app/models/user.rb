@@ -7,7 +7,7 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
-    validates :phone_number, format: { with: /\A\d{10,11}\z/ }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/ }, uniqueness: true
     validates :birthday
   end
 
