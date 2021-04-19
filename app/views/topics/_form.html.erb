@@ -1,0 +1,29 @@
+<div class="card border-warning m-auto" style="max-width: 85%;">
+  <div class="card-header">
+    <h5 class="page-heading">新規投稿</h5>
+    <h6 class="page-heading">- New Topic -</h6>
+  </div>
+  <div class="card-body">
+    <%= form_with model: topic, local: true do |f|%>
+      <div class="form-group">
+        <%= f.label :title, "タイトル" %><br>
+        <%= f.text_field :title, placeholder: "Topic title" ,class: "form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :text, "本文" %><br>
+        <%= f.text_area :text, placeholder: "Dear Femiに投稿してみましょう", rows: "8", class: "form-control"%>
+      </div>
+
+      <div class="form-control-fileform-control-file">
+        <%= f.label :image, "画像" %><br>
+        <%= f.file_field :image %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit "投稿", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
