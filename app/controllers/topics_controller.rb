@@ -17,6 +17,9 @@ class TopicsController < ApplicationController
     end    
   end
 
+  def about
+  end
+
   private
   
   def topic_params
