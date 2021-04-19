@@ -1,7 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    query = "SELECT * FROM topics"
-    @topics = Topic.find_by_sql(query)
+    @topics = Topic.includes(:user).order("created_at DESC")
   end
 
   def new
