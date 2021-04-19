@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+  before_action :set_topic, only: [:show, :edit, :update]
+  before_action :contributor_confirmation, only: [:edit, :update]
+
   def index
     @topics = Topic.includes(:user).order("created_at DESC")
   end
@@ -17,7 +20,17 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    if @topic.update(topic_params)
+      redirect_to topic_path(@topic)
+    else
+      render :edit
+    end
   end
 
   def about
@@ -27,5 +40,13 @@ class TopicsController < ApplicationController
   
   def topic_params
     params.require(:topic).permit(:title, :text, :image).merge(user_id: current_user.id)
+  end
+
+  def set_topic
+    @topic = Topic.find(params[:id])
+  end
+
+  def contributor_confirmation
+    redirect_to root_path unless current_user == @topic.user
   end
 end

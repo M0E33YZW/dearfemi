@@ -1,8 +1,4 @@
-<div class="card border-warning m-auto" style="max-width: 85%;">
-  <div class="card-header">
-    <h5 class="page-heading">新規投稿</h5>
-    <h6 class="page-heading">- New Topic -</h6>
-  </div>
+<div class="card border-warning m-auto" style="max-width: 90%;">
   <div class="card-body">
     <%= form_with model: topic, local: true do |f|%>
       <div class="form-group">
@@ -20,9 +16,7 @@
         <%= f.file_field :image %>
       </div>
       <br>
-      <div class="actions">
-        <%= f.submit "投稿", class: "btn btn-primary" %>
-      </div>
+        <%= f.submit "投稿", class: "btn btn-primary" %> <%= link_to "戻る", :back ,class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
