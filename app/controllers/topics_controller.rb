@@ -1,29 +1,27 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: %i[show edit update destroy]
+  before_action :contributor_confirmation, only: %i[edit update destroy]
 
   def index
-    @topics = Topic.includes(:user).order("created_at DESC")
+    @topics = Topic.includes(:user).order('created_at DESC')
   end
 
   def new
     @topic = Topic.new
   end
-  
+
   def create
     @topic = Topic.new(topic_params)
     if @topic.save
       redirect_to topics_path
     else
       render :index
-    end    
+    end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @topic.update(topic_params)
@@ -41,11 +39,10 @@ class TopicsController < ApplicationController
     end
   end
 
-  def about
-  end
+  def about; end
 
   private
-  
+
   def topic_params
     params.require(:topic).permit(:title, :text, :image).merge(user_id: current_user.id)
   end
