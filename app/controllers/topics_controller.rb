@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update]
-  before_action :contributor_confirmation, only: [:edit, :update]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
     @topics = Topic.includes(:user).order("created_at DESC")
@@ -30,6 +30,14 @@ class TopicsController < ApplicationController
       redirect_to topic_path(@topic)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @topic.destroy
+      redirect_to root_path
+    else
+      redirect_to topic_path(@topic)
     end
   end
 

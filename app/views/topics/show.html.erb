@@ -6,7 +6,7 @@
     <p class="card-text"><%= @topic.text %></p>
     <% if current_user == @topic.user%>
       <%= link_to "編集する", edit_topic_path(@topic), class: "badge badge-warning" %>
-      <%= link_to "削除する", root_path, method: :delete, class: "badge badge-warning" %>
+      <%= link_to "削除する", topic_path(@topic), method: :delete, class: "badge badge-warning" %>
     <% end %>
   </div>
 </div>
