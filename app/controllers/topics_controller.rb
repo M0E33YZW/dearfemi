@@ -21,7 +21,7 @@ class TopicsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @comment.posts.includes(:user)
+    @comments = @topic.comments.includes(:user)
   end
 
   def edit; end
