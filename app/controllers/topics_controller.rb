@@ -19,7 +19,10 @@ class TopicsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @comment = Comment.new
+    @comments = @topic.comments.includes(:user)
+  end
 
   def edit; end
 

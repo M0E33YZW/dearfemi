@@ -58,7 +58,7 @@ rails _6.0.0_
 ### Association
 
 - has_many  :topics
-- has_many  :posts
+- has_many  :comments
 
 
 ## topics テーブル
@@ -72,16 +72,16 @@ rails _6.0.0_
 ### Association
 
 - belongs_to :user
-- has_many   :posts
+- has_many   :comments
 
 
-## posts テーブル
-| Column | Type       | Options            |
-|:------:|:----------:|:------------------:|
-| image  | string     | ActiveStorageで実装 |
-| user   | references | null: false        |
-| topic  | references | null: false        |
-| text   | text       | null: false        |
+## comments テーブル
+| Column  | Type       | Options            |
+|:-------:|:----------:|:------------------:|
+| image   | string     | ActiveStorageで実装 |
+| user    | references | null: false        |
+| topic   | references | null: false        |
+| comment | text       | null: false        |
 
 ### Association
 

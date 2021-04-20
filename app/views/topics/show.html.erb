@@ -1,9 +1,12 @@
 <%= render "topics/header" %>
-<div class="card mx-auto">
+<div class="card border-light mb-8" style="mx-auto;">
   <div class="card-body">
-    <h4 class="card-title"><%= @topic.title %></h4>
-    <h6 class="card-subtitle mb-2 text-muted">by <%= link_to @topic.user.name, user_path(@topic.user) %></h6>
+    <div class="card-header">
+      <h5><%= @topic.title %></h5>
+    </div>
     <p class="card-text"><%= @topic.text %></p>
+    <h6 class="text-muted">by <%= link_to @topic.user.name, user_path(@topic.user) %>
+    <%= @topic.created_at %></h6>
     <% if current_user == @topic.user%>
       <%= link_to "編集する", edit_topic_path(@topic), class: "badge badge-warning" %>
       <%= link_to "削除する", topic_path(@topic), method: :delete, class: "badge badge-warning" %>
@@ -12,5 +15,25 @@
 </div>
 <%# <div class="topic__image">
   <%= image_tag @topic.image %>
+<% @comments.each do |comment| %>
+  <div class="card border-light" style="mx-auto;">
+    <div class="card-body">
+      <p class="card-text">
+        <%= link_to comment.user.name, "/users/#{comment.user_id}" %>：
+        <%= comment.comment %></p>
+      <h6 class="text-muted"><%= comment.created_at %></h6>
+      <% if current_user == @topic.user%>
+        <%= link_to "削除する", topic_comment_path(comment.topic.id, comment.id), method: :delete, class: "badge badge-warning" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="card border-light" style="mx-auto;">
+  <div class="form-group">
+  <%= form_with model:[@topic,@comment],local:true do |f|%>
+    <%= f.text_area :comment, placeholder: "コメントする", rows: "2", class: "form-control" %>
+    <%= f.submit "投稿", class: "btn btn-warning" %>
+  <% end %>
+  </div>
 </div>
 <br>
