@@ -44,6 +44,10 @@ class TopicsController < ApplicationController
 
   def about; end
 
+  def search
+    @topics = Topic.search(params[:keyword])
+  end
+
   private
 
   def topic_params

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
     collection do
       get 'about'
+      get 'search'
     end
   end
 end
