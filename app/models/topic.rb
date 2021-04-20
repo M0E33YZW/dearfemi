@@ -5,7 +5,7 @@ class Topic < ApplicationRecord
 
   with_options presence: true do
     validates :title
-    validates :text
+    validates :text, unless: :was_attached?
   end
 
   def self.search(search)
@@ -14,5 +14,9 @@ class Topic < ApplicationRecord
     else
       Topic.all
     end
+  end
+
+  def was_attached?
+    self.image.attached?  
   end
 end
