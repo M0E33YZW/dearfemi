@@ -4,6 +4,7 @@
     <div class="card-header">
       <h5><%= @topic.title %></h5>
     </div>
+    <%= image_tag @topic.image.variant(resize: '450'), class: 'd-block user-select-none' if @topic.image.attached?%>
     <p class="card-text"><%= @topic.text %></p>
     <h6 class="text-muted">by <%= link_to @topic.user.name, user_path(@topic.user) %>
     <%= @topic.created_at %></h6>
