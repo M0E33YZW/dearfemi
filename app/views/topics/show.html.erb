@@ -22,6 +22,9 @@
         <%= link_to comment.user.name, "/users/#{comment.user_id}" %>：
         <%= comment.comment %></p>
       <h6 class="text-muted"><%= comment.created_at %></h6>
+      <% if current_user == @topic.user%>
+        <%= link_to "削除する", topic_comment_path(comment.topic.id, comment.id), method: :delete, class: "badge badge-warning" %>
+      <% end %>
     </div>
   </div>
 <% end %>
