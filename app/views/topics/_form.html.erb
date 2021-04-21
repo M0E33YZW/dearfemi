@@ -15,8 +15,10 @@
         <%= f.label :image, "画像" %><br>
         <%= f.file_field :image %>
       </div>
+      <div id="image-list"></div>
+      <%= image_tag @topic.image, id: 'image' if @topic.image.present? %>
       <br>
-        <%= f.submit "投稿", class: "btn btn-warning" %> <%= link_to "戻る", :back ,class: "btn btn-warning" %>
+      <%= f.submit "投稿", class: "btn btn-warning" %> <%= link_to "戻る", :back ,class: "btn btn-warning" %>
     <% end %>
   </div>
 </div>
