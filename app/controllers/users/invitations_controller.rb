@@ -4,18 +4,18 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   def create
-     super
+    super
   end
 
   def edit
-     super
+    super
   end
 
   def update
-     super
+    super
   end
 
   def destroy
-     super
+    super
   end
 end

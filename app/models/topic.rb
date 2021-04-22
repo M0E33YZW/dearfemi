@@ -9,7 +9,7 @@ class Topic < ApplicationRecord
   end
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Topic.where('text LIKE(?)', "%#{search}%")
     else
       Topic.all
@@ -17,6 +17,6 @@ class Topic < ApplicationRecord
   end
 
   def was_attached?
-    self.image.attached?  
+    image.attached?
   end
 end
