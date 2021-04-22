@@ -16,7 +16,7 @@
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User</a>
         <div class="dropdown-menu">
           <%= link_to 'Profile', "/users/#{current_user.id}", class: "dropdown-item"%>
-          <a class="dropdown-item" href="#">Another action</a>
+          <%= link_to 'invitation', new_user_invitation_path, class: "dropdown-item"%>
           <%= link_to 'User Edit', edit_user_registration_path(@user), class: "dropdown-item"%>
           <div class="dropdown-divider"></div>
           <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>

@@ -52,8 +52,6 @@ rails _6.0.0_
 | name               | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| phone_number       | string | null: false, unique: true |
-| birthday           | date   | null: false               |
 
 ### Association
 

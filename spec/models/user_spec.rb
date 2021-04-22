@@ -66,33 +66,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it '生年月日が空では登録できない' do
-        @user.birthday = ''
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Birthday can't be blank")
-      end
-      it '電話番号が空では登録できない' do
-        @user.phone_number = nil
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Phone number can't be blank")
-      end
-      it '電話番号が英数混合では登録できない' do
-        @user.phone_number = '0123456test'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('Phone number is invalid')
-      end
-      it '電話番号が12桁以上では登録できない' do
-        @user.phone_number = '090123456789'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('Phone number is invalid')
-      end
-      it '重複した電話番号が存在する場合登録できない' do
-        @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.phone_number = @user.phone_number
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include('Phone number has already been taken')
-      end
     end
   end
 end

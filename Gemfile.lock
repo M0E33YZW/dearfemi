@@ -90,6 +90,12 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.9.3)
+      devise (>= 4.7.1)
+    devise-i18n-views (0.3.7)
+    devise_invitable (2.0.4)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.4.4)
     erubi (1.10.0)
     execjs (2.7.0)
@@ -291,6 +297,9 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  devise-i18n
+  devise-i18n-views
+  devise_invitable (~> 2.0.0)
   factory_bot_rails
   faker
   image_processing (~> 1.2)
