@@ -5,13 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          invite_for: 2.weeks
 
-  with_options presence: true do
-    validates :name
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
-    validates :phone_number, format: { with: /\A\d{10,11}\z/ }, uniqueness: true
-    validates :birthday
-  end
+  # with_options presence: true do
+  #   validates :name
+  #   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+  # end
 
-  has_many :topics
-  has_many :comments
+  has_many :topics, foreign_key: :user_id, dependent: :destroy
+  has_many :comments, foreign_key: :user_id, dependent: :destroy
 end
