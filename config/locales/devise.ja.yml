@@ -4,6 +4,8 @@ ja:
       models:
         user:
           attributes:
+            name:
+              blank: "が入力されていません。"
             email:
               taken: "は既に使用されています。"
               blank: "が入力されていません。"
@@ -17,6 +19,11 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
+            password_confirmation:
+              confirmation: "がパスワードと一致しません。"
+            current_password:
+              blank: "入力してください。"
+              invalid: "は有効ではありません。"
     attributes:
       user:
         current_password: "現在のパスワード"
