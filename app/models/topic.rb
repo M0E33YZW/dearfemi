@@ -5,9 +5,10 @@ class Topic < ApplicationRecord
   has_many :tags, through: :topic_tag_relations
   has_many :comments
 
-  with_options presence: true do
-    validates :title
-    validates :text, unless: :was_attached?
+  validate :text, unless: :was_attached?
+
+  def was_attached?
+    self.image.attached?
   end
 
   def self.search(search)
@@ -16,9 +17,5 @@ class Topic < ApplicationRecord
     else
       Topic.all
     end
-  end
-
-  def was_attached?
-    image.attached?
-  end
+  end  
 end
