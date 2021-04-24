@@ -1,7 +1,9 @@
 class Topic < ApplicationRecord
   belongs_to :user
-  has_many :comments
   has_one_attached :image
+  has_many :topic_tag_relations
+  has_many :tags, through: :topic_tag_relations
+  has_many :comments
 
   with_options presence: true do
     validates :title
