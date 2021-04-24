@@ -3,9 +3,12 @@
   <div class="card-body">
     <%= image_tag topic.image.variant(resize: '450'), class: 'd-block user-select-none' if topic.image.attached?%>
     <p class="card-text"><%= topic.text %></p>
+      <% topic.tags.each do |tag| %>
+        <%=tag.tagname%>
+      <% end %>
   </div>
     <small class="card-footer text-muted">
-      <%= topic.created_at %>
+      <%= l topic.created_at %>
       <%= link_to "by #{topic.user.name}", user_path(topic.user)%>
     </small>
 </div>
