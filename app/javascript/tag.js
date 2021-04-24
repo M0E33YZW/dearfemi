@@ -4,7 +4,7 @@ if (location.pathname.match("topics/new")){
     inputElement.addEventListener("keyup", () => {
       const keyword = document.getElementById("topics_tag_tagname").value;
       const XHR = new XMLHttpRequest();
-      XHR.open("GET", `search/?keyword=${keyword}`, true);
+      XHR.open("GET", `tagsearch/?keyword=${keyword}`, true);
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
