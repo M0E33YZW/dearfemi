@@ -47,6 +47,10 @@ class TopicsController < ApplicationController
 
   def search
     @topics = Topic.search(params[:keyword])
+
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['tagname LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag }
   end
 
   private
