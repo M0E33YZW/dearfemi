@@ -1,0 +1,2 @@
+class TopicTagRelation < ApplicationRecord
+end
