@@ -47,7 +47,9 @@ class TopicsController < ApplicationController
 
   def search
     @topics = Topic.search(params[:keyword])
+  end
 
+  def tagsearch
     return nil if params[:keyword] == ""
     tag = Tag.where(['tagname LIKE ?', "%#{params[:keyword]}%"] )
     render json:{ keyword: tag }
@@ -56,7 +58,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topics_tag).permit(:title, :text, :image, :tagname).merge(user_id: current_user.id)
+    params.require(:topics_tag).permit(:title, :text, :image, :tagname, tag_ids: []).merge(user_id: current_user.id)
   end
 
   def set_topic
