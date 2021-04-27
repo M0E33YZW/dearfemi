@@ -1,9 +1,9 @@
 class Topic < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  has_many :topic_tag_relations
+  has_many :topic_tag_relations, dependent: :destroy
   has_many :tags, through: :topic_tag_relations
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validate :text, unless: :was_attached?
 
@@ -17,5 +17,6 @@ class Topic < ApplicationRecord
     else
       Topic.all
     end
-  end  
+  end
+  
 end
