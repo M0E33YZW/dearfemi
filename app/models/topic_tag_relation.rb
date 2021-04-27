@@ -5,5 +5,5 @@ class TopicTagRelation < ApplicationRecord
   with_options presence: true do
     validates :topic_id
     validates :tag_id
-  end  
+  end
 end

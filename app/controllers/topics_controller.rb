@@ -14,9 +14,9 @@ class TopicsController < ApplicationController
     @topic = TopicsTag.new(topic_params)
     if @topic.valid?
       @topic.save
-      return redirect_to root_path
+      redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -50,9 +50,10 @@ class TopicsController < ApplicationController
   end
 
   def tagsearch
-    return nil if params[:keyword] == ""
-    tag = Tag.where(['tagname LIKE ?', "%#{params[:keyword]}%"] )
-    render json:{ keyword: tag }
+    return nil if params[:keyword] == ''
+
+    tag = Tag.where(['tagname LIKE ?', "%#{params[:keyword]}%"])
+    render json: { keyword: tag }
   end
 
   private
