@@ -6,6 +6,10 @@ class TopicsController < ApplicationController
     @topics = Topic.limit(5).order('created_at DESC')
   end
 
+  def all
+    @topics = Topic.all.order('created_at DESC')
+  end
+
   def new
     @topic = TopicsTag.new
   end

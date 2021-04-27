@@ -1,4 +1,4 @@
 <%= render "topics/header"%>
-<h2 class="page-heading">Feed</h2>
+<h2 class="page-heading">New Feed</h2>
 <%= render partial: 'topic', collection: @topics %>
-<h2 class>All Topics</h2>
+<div class="blockquote text-right"><h2><%= link_to 'All Topics', all_topics_path %></h2><div>

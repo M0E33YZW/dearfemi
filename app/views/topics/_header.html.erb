@@ -7,19 +7,19 @@
   <div class="navbar-collapse collapse show" id="navbarColor02" style="">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to 'About', about_topics_path, class: "nav-link" %>
+        <%= link_to 'ご利用にあたって', about_topics_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'New Topic', new_topic_path, class: "nav-link"%>
+        <%= link_to '新規投稿', new_topic_path, class: "nav-link"%>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">User</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">マイページ</a>
         <div class="dropdown-menu">
-          <%= link_to 'Profile', "/users/#{current_user.id}", class: "dropdown-item"%>
-          <%= link_to 'invitation', new_user_invitation_path, class: "dropdown-item"%>
-          <%= link_to 'User Edit', edit_user_registration_path(@user), class: "dropdown-item"%>
+          <%= link_to '投稿一覧', "/users/#{current_user.id}", class: "dropdown-item"%>
+          <%= link_to 'アカウント情報の編集', edit_user_registration_path(@user), class: "dropdown-item"%>
+          <%= link_to '招待する', new_user_invitation_path, class: "dropdown-item"%>
           <div class="dropdown-divider"></div>
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
       </li>
     </ul>
