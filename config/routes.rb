@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   root to: 'topics#index'
   resources :users, only: %i[edit update show]
   resources :topics do
-    resources :comments, only: %i[create destroy]
     collection do
       get 'about'
       get 'search'
+      get 'tagsearch'
     end
+    resources :comments, only: %i[create destroy]
   end
 end

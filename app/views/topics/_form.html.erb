@@ -1,25 +1,25 @@
 <div class="card border-warning m-auto" style="max-width: 90%;">
-  <div class="card-body">
-    <%= form_with model: topic, local: true do |f|%>
-      <div class="form-group">
-        <%= f.label :title, "タイトル" %><br>
-        <%= f.text_field :title, placeholder: "Topic title" ,class: "form-control"%>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :text, "本文" %><br>
-        <%= f.text_area :text, placeholder: "Dear Femiに投稿してみましょう", rows: "8", class: "form-control"%>
-      </div>
-
-      <div class="form-control-fileform-control-file">
-        <%= f.label :image, "画像" %><br>
-        <%= f.file_field :image %>
-      </div>
+  <%= form_with model: @topic, url: topics_path, class:"card-body", local: true do |f|%>
+    <div class="form-group">
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, placeholder: "Topic title" ,class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :text, "本文" %>
+      <%= f.text_area :text, placeholder: "Dear Femiに投稿してみましょう", rows: "7", class: "form-control"%>
+    </div>
+    <div class="form-control-fileform-control-file">
+      <%= f.label :image, "画像" %><br>
+      <%= f.file_field :image %>
       <div id="image-list"></div>
-      <%= image_tag @topic.image, id: 'image' if @topic.image.present? %>
-      <br>
-      <%= f.submit "投稿", class: "btn btn-warning" %> <%= link_to "戻る", :back ,class: "btn btn-warning" %>
-    <% end %>
-  </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :tagname, "タグ" %>
+      <%= f.text_field :tagname, placeholder: "「#」を先頭につけてください 例）#育休", class:"form-control" %>
+    </div>
+    <div id="search-result">
+    </div>
+    <%= f.submit "投稿", class: "btn btn-warning" %> <%= link_to "戻る", :back ,class: "btn btn-warning" %>
+  <% end %>
 </div>
 <br>

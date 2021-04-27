@@ -1,11 +1,14 @@
 class Topic < ApplicationRecord
   belongs_to :user
-  has_many :comments
   has_one_attached :image
+  has_many :topic_tag_relations, dependent: :destroy
+  has_many :tags, through: :topic_tag_relations
+  has_many :comments, dependent: :destroy
 
-  with_options presence: true do
-    validates :title
-    validates :text, unless: :was_attached?
+  validate :text, unless: :was_attached?
+
+  def was_attached?
+    self.image.attached?
   end
 
   def self.search(search)
@@ -15,8 +18,5 @@ class Topic < ApplicationRecord
       Topic.all
     end
   end
-
-  def was_attached?
-    image.attached?
-  end
+  
 end

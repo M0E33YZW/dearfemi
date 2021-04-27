@@ -3,19 +3,20 @@ class TopicsController < ApplicationController
   before_action :contributor_confirmation, only: %i[edit update destroy]
 
   def index
-    @topics = Topic.includes(:user).order('created_at DESC')
+    @topics = Topic.limit(5).order('created_at DESC')
   end
 
   def new
-    @topic = Topic.new
+    @topic = TopicsTag.new
   end
 
   def create
-    @topic = Topic.new(topic_params)
-    if @topic.save
-      redirect_to topics_path
+    @topic = TopicsTag.new(topic_params)
+    if @topic.valid?
+      @topic.save
+      return redirect_to root_path
     else
-      render :index
+      render "new"
     end
   end
 
@@ -48,10 +49,16 @@ class TopicsController < ApplicationController
     @topics = Topic.search(params[:keyword])
   end
 
+  def tagsearch
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['tagname LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag }
+  end
+
   private
 
   def topic_params
-    params.require(:topic).permit(:title, :text, :image).merge(user_id: current_user.id)
+    params.require(:topics_tag).permit(:title, :text, :image, :tagname, tag_ids: []).merge(user_id: current_user.id)
   end
 
   def set_topic
