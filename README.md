@@ -4,7 +4,7 @@
 Dear Femi
 
 **【アプリケーション概要】**
-日常で感じた違和感やもやもやをフェミニズム、ジェンダーを通して、どうしたら良くなるかを話し合い、学び、助け合って、個人のより良い人生を目指すためのコミュニケーションWEBサービスです。
+日常生活で感じた違和感やもやもやをフェミニズム、ジェンダー論を通して話し合い、個人のより良い人生を目指すためのコミュニケーションWEBサービスです。
 
 **【URL】**
 
@@ -35,14 +35,13 @@ Dear Femi
 **【実装した機能についての画像やGIF及びその説明】**
 
 **【実装予定の機能】**
+タグ一覧機能
 
 **【データベース設計】**
 ER図に記載
 
 **【ローカルでの動作方法】**
 rails _6.0.0_
-
-
 
 # テーブル設計
 
@@ -85,3 +84,21 @@ rails _6.0.0_
 
 - belongs_to :user
 - belongs_to :topic
+
+## tags テーブル
+| Column  | Type   | Options                   |
+|:-------:|:------:|:-------------------------:|
+| tagname | string | null: false, unique: true |
+
+- has_many  :topics
+- has_many  :topic_tag_relations
+
+
+## topictagrelations テーブル
+| Column | Type       | Options     |
+|:------:|:----------:|:-----------:|
+| topic  | references | null: false |
+| tag    | references | null: false |
+
+- belongs_to :topic
+- belongs_to :tag
