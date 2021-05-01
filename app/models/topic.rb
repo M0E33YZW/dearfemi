@@ -4,6 +4,7 @@ class Topic < ApplicationRecord
   has_many :topic_tag_relations, dependent: :destroy
   has_many :tags, through: :topic_tag_relations
   has_many :comments, dependent: :destroy
+  accepts_nested_attributes_for :topic_tag_relations
 
   validate :text, unless: :was_attached?
 
