@@ -6,6 +6,9 @@
     </div>
     <%= image_tag @topic.image.variant(resize: '400'), class: 'd-block user-select-none' if @topic.image.attached?%>
     <p class="card-text"><%= @topic.text %></p>
+      <% topic.tags.each do |tag| %>
+        <%= tag.tagname%>
+      <% end %>
     <h6 class="text-muted">by <%= link_to @topic.user.name, user_path(@topic.user) %>
     <%= @topic.created_at %></h6>
     <% if current_user == @topic.user%>
@@ -14,8 +17,6 @@
     <% end %>
   </div>
 </div>
-<%# <div class="topic__image">
-  <%= image_tag @topic.image %>
 <% @comments.each do |comment| %>
   <div class="card border-light" style="mx-auto;">
     <div class="card-body">
