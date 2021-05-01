@@ -5,6 +5,6 @@ class CreateTopicTagRelations < ActiveRecord::Migration[6.0]
       t.references :tag,   foreign_key: true
       t.timestamps
     end
-    add_index :topic_tag_relations, [:topic_id, :tag_id]
+    add_index :topic_tag_relations, %i[topic_id tag_id]
   end
 end
