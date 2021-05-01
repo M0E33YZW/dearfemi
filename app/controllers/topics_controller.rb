@@ -3,11 +3,11 @@ class TopicsController < ApplicationController
   before_action :contributor_confirmation, only: %i[edit update destroy]
 
   def index
-    @topics = Topic.limit(5).order('created_at DESC')
+    @topics = Topic.limit(5).order(created_at: :desc)
   end
 
   def all
-    @topics = Topic.all.order('created_at DESC')
+    @topics = Topic.all.order(created_at: :desc)
   end
 
   def new
@@ -18,7 +18,7 @@ class TopicsController < ApplicationController
     @topic = TopicsTag.new(topic_params)
     if @topic.valid?
       @topic.save
-      redirect_to root_path
+      return redirect_to topic_path
     else
       render 'new'
     end
@@ -55,9 +55,8 @@ class TopicsController < ApplicationController
 
   def tagsearch
     return nil if params[:keyword] == ''
-
     tag = Tag.where(['tagname LIKE ?', "%#{params[:keyword]}%"])
-    render json: { keyword: tag }
+    render json:{ keyword: tag }
   end
 
   private
