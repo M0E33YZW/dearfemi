@@ -15,10 +15,10 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = TopicsTag.new(topic_params)
+    @topic = TopicsTag.new(topics_tag_params)
     if @topic.valid?
       @topic.save
-      redirect_to topic_path
+      redirect_to root_path
     else
       render 'new'
     end
@@ -32,7 +32,7 @@ class TopicsController < ApplicationController
   def edit; end
 
   def update
-    if @topic.update(topic_params)
+    if @topic.update_attributes(topic_params)
       redirect_to topic_path(@topic)
     else
       render :edit
@@ -55,15 +55,18 @@ class TopicsController < ApplicationController
 
   def tagsearch
     return nil if params[:keyword] == ''
-
     tag = Tag.where(['tagname LIKE ?', "%#{params[:keyword]}%"])
     render json: { keyword: tag }
   end
 
   private
 
+  def topics_tag_params
+    params.require(:topics_tag).permit(:title, :text, :image, :tagname).merge(user_id: current_user.id)
+  end
+
   def topic_params
-    params.require(:topics_tag).permit(:title, :text, :image, :tagname, tag_ids: []).merge(user_id: current_user.id)
+    params.require(:topic).permit(:title, :text, :image).merge(user_id: current_user.id)
   end
 
   def set_topic
