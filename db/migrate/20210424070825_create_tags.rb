@@ -4,5 +4,6 @@ class CreateTags < ActiveRecord::Migration[6.0]
       t.string :tagname, null: false, unique: true
       t.timestamps
     end
+    add_index :tags, :tagname
   end
 end
