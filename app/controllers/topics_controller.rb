@@ -60,6 +60,12 @@ class TopicsController < ApplicationController
     render json: { keyword: tag }
   end
 
+  def tag
+    @user = current_user
+    @tag = Tag.find_by(id: params[:id])
+    @topics = @tag.topics
+  end
+
   private
 
   def topics_tag_params
