@@ -5,6 +5,7 @@
   <div class="card-body">
     <p class="card-text">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -14,7 +15,7 @@
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
         <div class="actions">
-          <%= f.submit "Log in" %>
+          <%= f.submit "ログイン" %>
         </div>
       <% end %>
       <br>
@@ -22,3 +23,4 @@
     </p>
   </div>
 </div>
+<br>
