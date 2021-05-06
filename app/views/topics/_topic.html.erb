@@ -4,7 +4,9 @@
     <%= image_tag topic.image.variant(resize: '450'), class: 'd-block user-select-none' if topic.image.attached?%>
     <p class="card-text"><%= topic.text %></p>
       <% topic.tags.each do |tag| %>
-        <%= tag.tagname%>
+        <%= link_to tag_path(tag.id) do%>
+          <%= tag.tagname %>
+        <% end %>
       <% end %>
   </div>
     <small class="card-footer text-muted">
