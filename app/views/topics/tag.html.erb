@@ -1,10 +1,19 @@
-<h2>ハッシュタグ <%= @tag.tagname %></h2>
-  <ul>
+<%= render "topics/header" %>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">
+      <%= @tag.tagname %>
+    </h4>
     <% @topics.each do |topic| %>
-          <%= image_tag topic.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") if topic.image.attached? %>
-      </li>
-      <%= topic.title%>
-      <%= topic.text%>
-    <% end %> %>
-  </ul>
--->
+      <p class="card-text">
+        <%= image_tag topic.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") if topic.image.attached? %>
+        <h6>
+        <%= topic.title%>
+        <%= topic.text%>
+        </h6>
+        <%= topic.created_at %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<br>
