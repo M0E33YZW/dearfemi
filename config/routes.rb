@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     end
     resources :comments, only: %i[create destroy]
   end
-  get '/tag/:id', to: "topics#tag", as: "tag"
+  get '/tag/:id', to: 'topics#tag', as: 'tag'
 end

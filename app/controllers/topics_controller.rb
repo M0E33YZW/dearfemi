@@ -35,7 +35,7 @@ class TopicsController < ApplicationController
   def update
     delete_records_related_to_hashtag(@topic)
     hashtags = extract_hashtag(params[:tag])
-    save_hashtag(hashtags,@topic)
+    save_hashtag(hashtags, @topic)
     if @topic.update_attributes(topic_params)
       redirect_to topic_path(@topic)
     else
