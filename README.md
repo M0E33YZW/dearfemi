@@ -37,7 +37,10 @@ https://dearfemi.herokuapp.com/
 
 **【実装した機能についての画像やGIF及びその説明】**
 ![c12c91fb762d5d972d1cc386b352c67c](https://user-images.githubusercontent.com/80046275/118346685-37b14700-b578-11eb-99f3-a0e98b301632.gif)
+ユーザーログイン・ログアウト
+トピックの新規投稿・編集・削除
 ![85353da579cf50105bda5d698cc9970e](https://user-images.githubusercontent.com/80046275/118346687-38e27400-b578-11eb-8f7b-64d51733a5ac.gif)
+Bootstrapを使用したレスポンシブデザイン
 
 **【実装予定の機能】**
 タグ一覧機能
