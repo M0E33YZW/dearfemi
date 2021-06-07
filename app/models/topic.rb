@@ -9,7 +9,7 @@ class Topic < ApplicationRecord
   validate :text, unless: :was_attached?
 
   def was_attached?
-    image.attached?
+    self.image.attached?
   end
 
   def self.search(search)

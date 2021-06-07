@@ -4,6 +4,7 @@
 </h4>
 <div class="card border-warning m-auto" style="max-width: 90%;">
   <%= form_with model: @topic, url: topics_path, class:"card-body", local: true do |f|%>
+    <%= render "shared/error_messages", model: f.object %>
     <div class="form-group">
       <%= f.label :title, "タイトル" %>
       <%= f.text_field :title, placeholder: "Topic title" ,class: "form-control"%>
