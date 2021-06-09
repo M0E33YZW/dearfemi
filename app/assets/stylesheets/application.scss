@@ -11,6 +11,10 @@
  * It is generally better to create a new file per style scope.
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
+ /*
+ *= require_tree .
+ *= require_self
+ */
  @import "bootswatch/sketchy/variables";
  @import "bootstrap";
  @import "bootswatch/sketchy/bootswatch";
