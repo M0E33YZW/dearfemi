@@ -1,9 +1,9 @@
 class Topic < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  has_many :topic_tag_relations, dependent: :destroy
+  has_many :topic_tag_relations
   has_many :tags, through: :topic_tag_relations
-  has_many :comments, dependent: :destroy
+  has_many :comments
   accepts_nested_attributes_for :topic_tag_relations
 
   validate :text, unless: :was_attached?

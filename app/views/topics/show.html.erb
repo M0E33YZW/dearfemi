@@ -11,9 +11,9 @@
       <% end %>
     <h6 class="text-muted">by <%= link_to @topic.user.name, user_path(@topic.user) %>
     <%= @topic.created_at %></h6>
-    <% if current_user == @topic.user%>
-      <%= link_to "編集する", edit_topic_path(@topic), class: "badge badge-warning" %>
-      <%= link_to "削除する", topic_path(@topic), method: :delete, class: "badge badge-warning" %>
+    <% if user_signed_in? && current_user.id == @topic.user_id %>
+        <%= link_to "トピックを編集", edit_topic_path(@topic.id), method: :get, class: "badge badge-warning" %>
+        <%= link_to "トピックを削除", topic_path(@topic.id), method: :delete, class: "badge badge-warning" %>
     <% end %>
   </div>
 </div>
@@ -23,10 +23,10 @@
       <p class="card-text">
         <%= link_to comment.user.name, "/users/#{comment.user_id}" %>：
         <%= comment.comment %><br>
-        <%= image_tag comment.image, id: 'image' if comment.image.present? %></p>
+        <%= image_tag comment.image.variant(resize: '400'), id: 'image' if comment.image.present? %></p>
       <h6 class="text-muted"><%= comment.created_at %></h6>
       <% if current_user == @topic.user%>
-        <%= link_to "削除する", topic_comment_path(comment.topic.id, comment.id), method: :delete, class: "badge badge-warning" %>
+        <%= link_to "コメントを削除", topic_comment_path(comment.topic.id, comment.id), method: :delete, class: "badge badge-warning" %>
       <% end %>
     </div>
   </div>
